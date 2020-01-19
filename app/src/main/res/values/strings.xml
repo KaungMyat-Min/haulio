@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Haulio</string>
+
+
+    <string name="dummy_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+
+    <string name="check_your_network_connection">Check your internet connection and try again.</string>
+    <string name="permission_request_storage">Storage permission is required. Please enable it in the setting.</string>
+    <string name="webview_general_error">Operation did not success. Please try again later.</string>
+    <string name="connection_error">Please check your connection and try again</string>
+    <string name="profile_picture_upload_fail">Fail to upload Profile picture. Please try again later.</string>
+    <string name="video_play_error">This video can\'t play now.</string>
+    <string name="download_complete">Download Complete</string>
+    <string name="download_file_delete">Download File Deleted.</string>
+    <string name="no_download">There is no download completed</string>
+    <string name="agree_terms_and_conditions">Please Agree Terms And Conditions.</string>
+    <string name="log_in_again">Session expired! Please log in again.</string>
+    <string name="ok">ok</string>
+
+    <string name="error_cannot_delete">Something went wrong. Can\'t delete file.</string>
+    <string name="error_comment_upload_fail">Uploading comment fail.</string>
+    <string name="open_internet_to_sync">Please open internet to sync data and try again.</string>
+    <string name="package_expired">Package Expired. Please Buy package.</string>
+    <string name="error_storage_unavailable">Storage unavailable</string>
+    <string name="error_file_not_found">File could not found.</string>
+    <string name="file_exist_only_in_storage">File doesn\'t exist in database.</string>
+    <string name="error_data_not_ready">Please wait a while.</string>
+    <string name="error_profile_name_upload_fail">Fail to change username</string>
+    <string name="error_profile_upload_fail">Fail to upload profile. Please try again later.</string>
+
+    <string name="error_required_field_missing">Please fill all fields</string>
+</resources>

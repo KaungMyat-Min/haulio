@@ -38,6 +38,8 @@ ext {
 
     retrofit = '2.7.1'
     picasso = '2.71828'
+
+    playservice = '17.0.0'
 }
 
 dependencies {
@@ -52,6 +54,10 @@ dependencies {
     implementation "androidx.navigation:navigation-ui:$navigation"
     implementation "androidx.cardview:cardview:$cardview"
     implementation "com.google.android.material:material:$material"
+
+    //------------------- Map -------------------
+    implementation "com.google.android.gms:play-services-maps:$playservice"
+    implementation "com.google.android.gms:play-services-location:$playservice"
 
 
     //------------------- Retrofit2 -------------------

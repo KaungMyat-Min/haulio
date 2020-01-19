@@ -4,6 +4,7 @@ package com.kaungmyatmin.haulio.common.dependancyInjection.activity;
 import androidx.lifecycle.ViewModel;
 
 import com.kaungmyatmin.haulio.ui.jobs.JobsViewModel;
+import com.kaungmyatmin.haulio.ui.transport.TransportViewModel;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -27,7 +28,12 @@ public abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(JobsViewModel.class)
-    abstract ViewModel provideMainModel(JobsViewModel viewModel);
+    abstract ViewModel provideJobsModel(JobsViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(TransportViewModel.class)
+    abstract ViewModel provideTransportModel(TransportViewModel viewModel);
 
 
 

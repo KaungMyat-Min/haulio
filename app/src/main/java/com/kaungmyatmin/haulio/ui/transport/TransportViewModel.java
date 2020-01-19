@@ -1,7 +1,19 @@
 package com.kaungmyatmin.haulio.ui.transport;
 
-import androidx.lifecycle.ViewModel;
+import com.kaungmyatmin.haulio.common.baseclass.BaseViewModel;
 
-public class TransportViewModel extends ViewModel {
-    // TODO: Implement the ViewModel
+import javax.inject.Inject;
+
+public class TransportViewModel extends BaseViewModel {
+
+    @Inject
+    public TransportViewModel() {
+
+        init();
+    }
+
+    @Override
+    protected void init() {
+
+    }
 }

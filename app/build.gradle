@@ -40,6 +40,7 @@ ext {
     picasso = '2.71828'
 
     playservice = '17.0.0'
+    places = '2.1.0'
 }
 
 dependencies {
@@ -58,7 +59,7 @@ dependencies {
     //------------------- Map -------------------
     implementation "com.google.android.gms:play-services-maps:$playservice"
     implementation "com.google.android.gms:play-services-location:$playservice"
-
+    implementation "com.google.android.libraries.places:places-compat:$places"
 
     //------------------- Retrofit2 -------------------
     implementation "com.squareup.retrofit2:retrofit:$retrofit"

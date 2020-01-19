@@ -8,4 +8,34 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="text_title">
+        <item name="android:textSize">@dimen/text_title</item>
+        <item name="android:paddingStart">@dimen/padding_2</item>
+        <item name="android:paddingTop">@dimen/padding_1</item>
+    </style>
+
+    <style name="text_big">
+        <item name="android:textSize">@dimen/text_big</item>
+        <item name="android:paddingStart">@dimen/padding_2</item>
+        <item name="android:paddingTop">@dimen/padding_1</item>
+    </style>
+
+    <style name="text_normal">
+        <item name="android:textSize">@dimen/text_normal</item>
+        <item name="android:paddingStart">@dimen/padding_2</item>
+        <item name="android:paddingTop">@dimen/padding_1</item>
+    </style>
+
+    <style name="text_sub">
+        <item name="android:textSize">@dimen/text_sub</item>
+        <item name="android:textColor">@color/transparent_grey_500_seventy</item>
+        <item name="android:paddingStart">@dimen/padding_2</item>
+        <item name="android:paddingTop">@dimen/padding_1</item>
+    </style>
+
+    <style name="btn_text">
+        <item name="android:textSize">@dimen/text_normal</item>
+    </style>
+
+
 </resources>

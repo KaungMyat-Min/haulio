@@ -30,4 +30,13 @@
     <string name="error_profile_upload_fail">Fail to upload profile. Please try again later.</string>
 
     <string name="error_required_field_missing">Please fill all fields</string>
+
+    <string name="job_number">Job Number:</string>
+    <string name="company">Company:</string>
+    <string name="address">Address:</string>
+    <string name="test_job_number">221231</string>
+    <string name="test_address">just some address for testing</string>
+    <string name="test_company_name">NTUC warehouse</string>
+    <string name="button_accept">Accept</string>
+    <string name="jobs_available">Jobs Available</string>
 </resources>

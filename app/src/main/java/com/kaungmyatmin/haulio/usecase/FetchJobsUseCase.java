@@ -17,7 +17,7 @@ import retrofit2.Response;
 
 public class FetchJobsUseCase extends BaseObservableUseCase<List<Job>> {
 
-    private final String TAG = this.getClass().getSimpleName();
+    private static final String TAG = FetchJobsUseCase.class.getSimpleName();
     private final ApiService apiService;
 
     @Inject

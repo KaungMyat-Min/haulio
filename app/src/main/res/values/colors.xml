@@ -3,4 +3,54 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    //-------------- usual colors --------------
+    <color name="transparent_grey_500_seventy">#B39e9e9e</color>
+
+    <color name="five_percent_transparency_white">#0Dffffff</color>
+    <color name="ten_percent_transparency_white">#1Affffff</color>
+    <color name="twenty_percent_transparency_white">#33ffffff</color>
+    <color name="thirty_percent_transparency_white">#4Dffffff</color>
+    <color name="fifty_percent_transparency_white">#80ffffff</color>
+    <color name="sixty_percent_transparency_white">#99ffffff</color>
+    <color name="seventy_percent_transparency_white">#B3ffffff</color>
+    <color name="eighty_percent_transparency_white">#CCffffff</color>
+    <color name="ninty_percent_transparency_white">#E6ffffff</color>
+    <color name="ninty_five_percent_transparency_white">#F2ffffff</color>
+
+    <color name="five_percent_transparency_black">#0D000000</color>
+    <color name="ten_percent_transparency_black">#1A000000</color>
+    <color name="twenty_percent_transparency_black">#33000000</color>
+    <color name="forty_percent_transparency_black">#66000000</color>
+    <color name="fifty_percent_transparency_black">#80000000</color>
+    <color name="sixty_percent_transparency_black">#99000000</color>
+    <color name="seventy_percent_transparency_black">#B3000000</color>
+    <color name="eighty_percent_transparency_black">#CC000000</color>
+    <color name="ninty_percent_transparency_black">#E6000000</color>
+    <color name="ninty_five_percent_transparency_black">#F2000000</color>
+
+    <color name="fifty_percent_transparency_grey_400">#80bdbdbd</color>
+    <color name="fifty_percent_transparency_teal_500">#ff7043</color>
+    <color name="forty_percent_transparency_orage">#66ff7043</color>
+
+    <color name="ruby_c">#DB391E</color>
+    <color name="gold_c">#F6A742</color>
+    <color name="jade_c">#6EAF26</color>
+    <color name="sapphire_c">#0B9BD0</color>
+    <color name="modern_blue">#0c4da1</color>
+    <color name="modern_yellow">#FFCB08</color>
+
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="md_red">#D32F2F</color>
+    <color name="md_purple">#673AB7</color>
+    <color name="md_blue">#2196F3</color>
+    <color name="md_green">#43A047</color>
+    <color name="md_white">#FAFAFA</color>
+
+    <color name="md_amber">#FFC107</color>
+    <color name="md_lime">#7CEC43</color>
+    <color name="dark_lime">#70D53C</color>
+    <color name="md_pink">#E91E63</color>
+    <color name="md_blue_grey">#78909C</color>
 </resources>

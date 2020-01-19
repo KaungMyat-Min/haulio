@@ -1,18 +1,16 @@
 package com.kaungmyatmin.haulio;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 import com.kaungmyatmin.haulio.common.baseclass.BaseActivity;
-import com.kaungmyatmin.haulio.ui.jobs.JobsFragment;
+import com.kaungmyatmin.haulio.helper.NavigationHelper;
 
 import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity {
 
     @Inject
-    JobsFragment jobsFragment;
+    NavigationHelper navigationHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,9 +18,7 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.main_activity);
         getActivityComponent().inject(this);
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, jobsFragment)
-                    .commitNow();
+            navigationHelper.jobsFragment();
         }
     }
 

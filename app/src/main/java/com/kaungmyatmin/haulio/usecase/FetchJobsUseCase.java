@@ -3,9 +3,8 @@ package com.kaungmyatmin.haulio.usecase;
 import com.kaungmyatmin.haulio.common.baseclass.BaseObservableUseCase;
 import com.kaungmyatmin.haulio.errorhandler.ErrorType;
 import com.kaungmyatmin.haulio.model.Job;
-import com.kaungmyatmin.haulio.model.schema.SchemaJobs;
 import com.kaungmyatmin.haulio.network.ApiService;
-import com.kaungmyatmin.haulio.utli.MyLog;
+import com.kaungmyatmin.haulio.helper.MyLog;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.kaungmyatmin.haulio.utli;
+package com.kaungmyatmin.haulio.helper;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -6,21 +6,21 @@ import android.preference.PreferenceManager;
 
 import javax.inject.Inject;
 
-public class PreferenceUtil {
+public class PreferenceHelper {
 
-    private static PreferenceUtil instance;
+    private static PreferenceHelper instance;
     private SharedPreferences SP;
 
     @Inject
-    public PreferenceUtil(Context mContext) {
+    public PreferenceHelper(Context mContext) {
         SP = PreferenceManager.getDefaultSharedPreferences(mContext);
     }
 
-    public static PreferenceUtil getInstance(Context context) {
+    public static PreferenceHelper getInstance(Context context) {
         if (instance == null) {
-            synchronized (PreferenceUtil.class) {
+            synchronized (PreferenceHelper.class) {
                 if (instance == null)
-                    instance = new PreferenceUtil(context);
+                    instance = new PreferenceHelper(context);
             }
         }
         return instance;

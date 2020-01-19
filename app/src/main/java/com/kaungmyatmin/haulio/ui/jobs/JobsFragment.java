@@ -13,18 +13,14 @@ import android.view.ViewGroup;
 
 import com.kaungmyatmin.haulio.R;
 import com.kaungmyatmin.haulio.common.baseclass.BaseFragment;
-import com.kaungmyatmin.haulio.model.Job;
 import com.kaungmyatmin.haulio.ui.jobs.adapter.JobsAdapter;
-import com.kaungmyatmin.haulio.utli.MyLog;
-
-import java.lang.annotation.Target;
-import java.util.List;
 
 import javax.inject.Inject;
 
 public class JobsFragment extends BaseFragment {
 
     private static final String TAG = JobsFragment.class.getSimpleName();
+    private static JobsFragment INSTANCE;
 
     //------- views variables start-------
     private RecyclerView recyclerView;
@@ -36,10 +32,13 @@ public class JobsFragment extends BaseFragment {
     @Inject
     JobsAdapter jobsAdapter;
 
-    @Inject
-    public JobsFragment() {
-
+    public static JobsFragment getInstance() {
+        if(INSTANCE == null){
+            INSTANCE = new JobsFragment();
+        }
+        return INSTANCE;
     }
+
 
     @Nullable
     @Override
@@ -53,18 +52,13 @@ public class JobsFragment extends BaseFragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        getActivityComponent().inject(this);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(jobsAdapter);
 
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        getActivityComponent().inject(this);
         mViewModel.fetchJobs();
         setObservers();
 

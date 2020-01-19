@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.kaungmyatmin.haulio.R;
 import com.kaungmyatmin.haulio.common.baseclass.BaseViewHolder;
 import com.kaungmyatmin.haulio.model.Job;
-import com.kaungmyatmin.haulio.utli.MyLog;
 
 import java.util.List;
 

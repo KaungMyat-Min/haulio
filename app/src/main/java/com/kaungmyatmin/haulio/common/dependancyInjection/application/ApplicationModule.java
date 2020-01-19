@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.kaungmyatmin.haulio.utli.PreferenceUtil;
+import com.kaungmyatmin.haulio.helper.PreferenceHelper;
 
 import javax.inject.Singleton;
 
@@ -32,8 +32,8 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    static PreferenceUtil getPreferenceUtil(Application application) {
-        return new PreferenceUtil(application);
+    static PreferenceHelper getPreferenceUtil(Application application) {
+        return new PreferenceHelper(application);
     }
 
 }

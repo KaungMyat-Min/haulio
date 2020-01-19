@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 
 
 import com.kaungmyatmin.haulio.common.baseclass.BaseActivity;
+import com.kaungmyatmin.haulio.helper.NavigationHelper;
 
 import dagger.Module;
 import dagger.Provides;
@@ -39,5 +40,9 @@ public class ActivityModule {
         return LayoutInflater.from(context);
     }
 
+    @Provides
+    static NavigationHelper getNavigationHelper(FragmentManager fragmentManager){
+        return  new NavigationHelper(fragmentManager);
+    }
 
 }

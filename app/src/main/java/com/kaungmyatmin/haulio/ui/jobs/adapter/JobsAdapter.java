@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.kaungmyatmin.haulio.R;
 import com.kaungmyatmin.haulio.common.baseclass.BaseViewHolder;
+import com.kaungmyatmin.haulio.helper.NavigationHelper;
 import com.kaungmyatmin.haulio.model.Job;
 
 import java.util.List;
@@ -23,10 +24,12 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.MyViewHolder> 
 
     private LayoutInflater inflater;
     private List<Job> jobs;
+    private NavigationHelper navigationHelper;
 
     @Inject
-    public JobsAdapter(LayoutInflater inflater) {
+    public JobsAdapter(LayoutInflater inflater, NavigationHelper navigationHelper) {
         this.inflater = inflater;
+        this.navigationHelper = navigationHelper;
     }
 
     @NonNull
@@ -56,7 +59,7 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.MyViewHolder> 
 
     //------------- view holder -------------
 
-    public static class MyViewHolder extends BaseViewHolder<Job> {
+    public class MyViewHolder extends BaseViewHolder<Job> {
 
         private TextView tvJobNumber, tvCompany, tvAddress;
         private Button btnAccept;
@@ -86,7 +89,7 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.MyViewHolder> 
             tvAddress.setText(job.getAddress());
 
             btnAccept.setOnClickListener(view -> {
-
+                navigationHelper.toTransport(job);
             });
 
         }

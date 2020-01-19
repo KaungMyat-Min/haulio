@@ -41,8 +41,8 @@ public class ActivityModule {
     }
 
     @Provides
-    static NavigationHelper getNavigationHelper(FragmentManager fragmentManager){
-        return  new NavigationHelper(fragmentManager);
+    static NavigationHelper getNavigationHelper(BaseActivity activity){
+        return  new NavigationHelper(activity);
     }
 
 }

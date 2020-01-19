@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    app:startDestination="@id/dest_jobsFragment">
+
+    <fragment
+        android:id="@+id/dest_jobsFragment"
+        android:name="com.kaungmyatmin.haulio.ui.jobs.JobsFragment"
+        android:label="fragment_jobs"
+        tools:layout="@layout/fragment_jobs" >
+        <action
+            android:id="@+id/action_jobsFragment_to_transportFragment"
+            app:destination="@id/dest_transportFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dest_transportFragment"
+        android:name="com.kaungmyatmin.haulio.ui.transport.TransportFragment"
+        android:label="fragment_transport"
+        tools:layout="@layout/fragment_transport" />
+</navigation>

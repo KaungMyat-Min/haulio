@@ -2,7 +2,9 @@ package com.kaungmyatmin.haulio.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Job {
+import java.io.Serializable;
+
+public class Job implements Serializable {
     private int id;
 
     @SerializedName("job-id")

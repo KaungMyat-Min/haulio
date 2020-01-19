@@ -20,7 +20,6 @@ import javax.inject.Inject;
 public class JobsFragment extends BaseFragment {
 
     private static final String TAG = JobsFragment.class.getSimpleName();
-    private static JobsFragment INSTANCE;
 
     //------- views variables start-------
     private RecyclerView recyclerView;
@@ -32,19 +31,11 @@ public class JobsFragment extends BaseFragment {
     @Inject
     JobsAdapter jobsAdapter;
 
-    public static JobsFragment getInstance() {
-        if(INSTANCE == null){
-            INSTANCE = new JobsFragment();
-        }
-        return INSTANCE;
-    }
-
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.main_fragment, container, false);
+        View view = inflater.inflate(R.layout.fragment_jobs, container, false);
         bindViews(view);
         updateTheme();
 

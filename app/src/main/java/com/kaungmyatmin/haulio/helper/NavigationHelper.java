@@ -1,24 +1,30 @@
 package com.kaungmyatmin.haulio.helper;
 
-import androidx.fragment.app.FragmentManager;
+import android.app.Activity;
+import android.os.Bundle;
 
+import androidx.navigation.Navigation;
 import com.kaungmyatmin.haulio.R;
-import com.kaungmyatmin.haulio.ui.jobs.JobsFragment;
+import com.kaungmyatmin.haulio.model.Job;
 
 public class NavigationHelper {
-    private FragmentManager fragmentManager;
-
-    public NavigationHelper(FragmentManager fragmentManager) {
-        this.fragmentManager = fragmentManager;
+    private Activity activity;
+    public NavigationHelper(Activity activity) {
+        this.activity = activity;
     }
 
-    public void jobsFragment() {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, JobsFragment.getInstance())
-                .commitNow();
+    public void toJobs() {
+        Navigation.findNavController(activity,R.id.nav_host_fragment)
+                .navigate(R.id.dest_jobsFragment);
     }
 
-    private FragmentManager getSupportFragmentManager() {
-        return this.fragmentManager;
+    public void toTransport(Job job){
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("job",job);
+        Navigation.findNavController(activity,R.id.nav_host_fragment)
+        .navigate(R.id.action_jobsFragment_to_transportFragment,bundle);
+
     }
+
+
 }

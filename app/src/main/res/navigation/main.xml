@@ -35,9 +35,5 @@
         android:id="@+id/dest_loginFragment"
         android:name="com.kaungmyatmin.haulio.ui.login.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/action_loginFragment_to_dest_jobsFragment"
-            app:destination="@id/dest_jobsFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_login" />
 </navigation>

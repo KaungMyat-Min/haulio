@@ -47,6 +47,10 @@ public class AuthHelper {
 
     }
 
+    public void logout(){
+        prefs.edit().clear().commit();
+    }
+
     public boolean isLogged() {
         return getCurrentUser() != null;
     }

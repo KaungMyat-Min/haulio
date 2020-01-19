@@ -19,69 +19,43 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.snackbar.Snackbar;
 import com.kaungmyatmin.haulio.R;
 
+import javax.inject.Inject;
+
 
 public class PermissionHelper {
-    public static final int REQUEST_STORAGE_PERMISSIONS_PROFILE_UPLOAD = 1;
+    public static final int REQUEST_LOCATION_PERMISSION = 101;
 
-    public static boolean checkStoragePermission(Context context) {
-        return ActivityCompat.checkSelfPermission(context,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
-    }
 
-    public static void requestStoragePermission(Activity context) {
+    public static boolean checkLocationPermission(Fragment fragment) {
+        Activity activity = fragment.getActivity();
+        if (!isPermissionGranted(activity, Manifest.permission.ACCESS_FINE_LOCATION)
+                && !isPermissionGranted(activity, Manifest.permission.ACCESS_COARSE_LOCATION)) {
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (PermissionHelper.neverAskAgainSelected(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                showSnackBar(context);
-                return;
+            if (ActivityCompat.shouldShowRequestPermissionRationale(activity,
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
+                //show user the explanation why we need the permission,
+                showSnackBar(activity, R.string.permission_request_location);
             }
+
+//            ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_PERMISSION);
+            fragment.requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},REQUEST_LOCATION_PERMISSION);
+//            fragment.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+//                    REQUEST_STORAGE_PERMISSIONS_PROFILE_UPLOAD);
+//
+            return false;
+        } else {
+            return true;
         }
-
-        ActivityCompat.requestPermissions(context,
-                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                REQUEST_STORAGE_PERMISSIONS_PROFILE_UPLOAD);
-
-
     }
 
-    public static void requestStoragePermission(Fragment fragment) {
-        Activity context = fragment.getActivity();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (PermissionHelper.neverAskAgainSelected(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                showSnackBar(context);
-                return;
-            }
-        }
-
-        fragment.requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                REQUEST_STORAGE_PERMISSIONS_PROFILE_UPLOAD);
+    private static boolean isPermissionGranted(Context context, String permission) {
+        return ActivityCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED;
     }
 
-    public static void setShouldShowStatus(Context context, String permission) {
-
-        SharedPreferences genPrefs = context.getApplicationContext().getSharedPreferences("GENERIC_PREFERENCES", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = genPrefs.edit();
-        editor.putBoolean(permission, true);
-        editor.commit();
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    private static boolean neverAskAgainSelected(Activity activity, String permission) {
-        final boolean prevShouldShowStatus = getRatinaleDisplayStatus(activity, permission);
-        final boolean currShouldShowStatus = ActivityCompat.shouldShowRequestPermissionRationale(activity, permission);
-        return prevShouldShowStatus && !currShouldShowStatus;
-    }
-
-
-    private static boolean getRatinaleDisplayStatus(final Context context, final String permission) {
-        SharedPreferences genPrefs = context.getApplicationContext().getSharedPreferences("GENERIC_PREFERENCES", Context.MODE_PRIVATE);
-        return genPrefs.getBoolean(permission, false);
-    }
-
-    private static void showSnackBar(Activity activity) {
+    private static void showSnackBar(Activity activity, int resId) {
         View rootView = ((ViewGroup) activity.findViewById(android.R.id.content)).getChildAt(0);
 
-        Snackbar snackbar = Snackbar.make(rootView, R.string.permission_request_storage, Snackbar.LENGTH_LONG);
+        Snackbar snackbar = Snackbar.make(rootView, resId, Snackbar.LENGTH_LONG);
 
 
         snackbar.setAction("Setting", view -> goToSetting(activity));

@@ -1,4 +1,4 @@
-package com.kaungmyatmin.haulio.ui.main;
+package com.kaungmyatmin.haulio.ui.jobs;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Transformations;

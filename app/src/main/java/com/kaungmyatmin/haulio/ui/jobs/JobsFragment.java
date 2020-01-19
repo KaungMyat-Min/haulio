@@ -1,12 +1,9 @@
-package com.kaungmyatmin.haulio.ui.main;
-
-import androidx.lifecycle.ViewModelProviders;
+package com.kaungmyatmin.haulio.ui.jobs;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,14 +11,24 @@ import android.view.ViewGroup;
 
 import com.kaungmyatmin.haulio.R;
 import com.kaungmyatmin.haulio.common.baseclass.BaseFragment;
+import com.kaungmyatmin.haulio.model.Job;
+import com.kaungmyatmin.haulio.utli.MyLog;
+
+import java.lang.annotation.Target;
+import java.util.List;
 
 import javax.inject.Inject;
 
 public class JobsFragment extends BaseFragment {
 
+    private final String TAG = JobsFragment.class.getSimpleName();
     @Inject
-    private JobsViewModel mViewModel;
+    JobsViewModel mViewModel;
 
+    @Inject
+    public JobsFragment() {
+
+    }
 
     @Nullable
     @Override
@@ -60,6 +67,12 @@ public class JobsFragment extends BaseFragment {
 
     @Override
     protected void setObservers() {
+        mViewModel.getJobsLiveData().observe(this, jobsDataWrapper -> {
+            if(jobsDataWrapper.isLoading()){
 
+            }else{
+
+            }
+        });
     }
 }

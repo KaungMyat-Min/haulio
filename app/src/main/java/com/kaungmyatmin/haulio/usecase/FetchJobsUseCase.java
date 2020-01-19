@@ -5,6 +5,7 @@ import com.kaungmyatmin.haulio.errorhandler.ErrorType;
 import com.kaungmyatmin.haulio.model.Job;
 import com.kaungmyatmin.haulio.model.schema.SchemaJobs;
 import com.kaungmyatmin.haulio.network.ApiService;
+import com.kaungmyatmin.haulio.utli.MyLog;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ import retrofit2.Response;
 
 public class FetchJobsUseCase extends BaseObservableUseCase<List<Job>> {
 
+    private final String TAG = this.getClass().getSimpleName();
     private final ApiService apiService;
 
     @Inject
@@ -24,13 +26,14 @@ public class FetchJobsUseCase extends BaseObservableUseCase<List<Job>> {
     }
 
     public void fetchJobs() {
-        Call<SchemaJobs> call = apiService.getJobs();
+        Call<List<Job>> call = apiService.getJobs();
         postLoading(true);
-        call.enqueue(new Callback<SchemaJobs>() {
+        call.enqueue(new Callback<List<Job>>() {
             @Override
-            public void onResponse(Call<SchemaJobs> call, Response<SchemaJobs> response) {
+            public void onResponse(Call<List<Job>> call, Response<List<Job>> response) {
+                MyLog.d(TAG,response.message());
                 if (response.isSuccessful() && response.body() != null) {
-                    List<Job> jobs = response.body().getJobs();
+                    List<Job> jobs = response.body();
                     postResult(jobs);
                 }else{
                     postError(ErrorType.NETWORK_ERROR);
@@ -38,7 +41,8 @@ public class FetchJobsUseCase extends BaseObservableUseCase<List<Job>> {
             }
 
             @Override
-            public void onFailure(Call<SchemaJobs> call, Throwable t) {
+            public void onFailure(Call<List<Job>> call, Throwable t) {
+                MyLog.d(TAG,t.getMessage());
                 postError(ErrorType.NETWORK_ERROR);
             }
         });

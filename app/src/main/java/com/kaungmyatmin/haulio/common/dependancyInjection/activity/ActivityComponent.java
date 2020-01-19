@@ -3,7 +3,7 @@ package com.kaungmyatmin.haulio.common.dependancyInjection.activity;
 
 
 import com.kaungmyatmin.haulio.MainActivity;
-import com.kaungmyatmin.haulio.ui.main.JobsFragment;
+import com.kaungmyatmin.haulio.ui.jobs.JobsFragment;
 
 import dagger.Subcomponent;
 

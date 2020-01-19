@@ -4,7 +4,7 @@ package com.kaungmyatmin.haulio.utli;
 public class MyLog {
 
     //Set ENABLE_LOG to true to show logs
-    public static boolean ENABLE_ALL_LOG = false;
+    public static boolean ENABLE_ALL_LOG = true;
 
 
     public static void d(String tag, String message) {

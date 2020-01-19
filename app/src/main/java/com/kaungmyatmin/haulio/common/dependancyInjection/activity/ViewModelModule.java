@@ -3,7 +3,7 @@ package com.kaungmyatmin.haulio.common.dependancyInjection.activity;
 
 import androidx.lifecycle.ViewModel;
 
-import com.kaungmyatmin.haulio.ui.main.JobsViewModel;
+import com.kaungmyatmin.haulio.ui.jobs.JobsViewModel;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

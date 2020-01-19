@@ -3,6 +3,7 @@ package com.kaungmyatmin.haulio.helper;
 import android.app.Activity;
 import android.os.Bundle;
 
+import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import com.kaungmyatmin.haulio.R;
 import com.kaungmyatmin.haulio.model.Job;
@@ -13,17 +14,30 @@ public class NavigationHelper {
         this.activity = activity;
     }
 
+    public void toSplash(){
+        getNavController().popBackStack(R.id.dest_splashFragment,false);
+    }
+
+    public void toLogin(){
+        getNavController()
+                .navigate(R.id.dest_loginFragment);
+    }
     public void toJobs() {
-        Navigation.findNavController(activity,R.id.nav_host_fragment)
-                .navigate(R.id.dest_jobsFragment);
+        NavController controller = getNavController();
+        controller.popBackStack();
+        controller.navigate(R.id.dest_jobsFragment);
     }
 
     public void toTransport(Job job){
         Bundle bundle = new Bundle();
         bundle.putSerializable("job",job);
-        Navigation.findNavController(activity,R.id.nav_host_fragment)
-        .navigate(R.id.action_jobsFragment_to_transportFragment,bundle);
+       getNavController()
+        .navigate(R.id.dest_transportFragment,bundle);
 
+    }
+
+    private NavController getNavController(){
+        return Navigation.findNavController(activity,R.id.nav_host_fragment);
     }
 
 

@@ -60,6 +60,7 @@ dependencies {
     implementation "com.google.android.gms:play-services-maps:$playservice"
     implementation "com.google.android.gms:play-services-location:$playservice"
     implementation "com.google.android.libraries.places:places-compat:$places"
+    implementation "com.google.android.gms:play-services-auth:$playservice"
 
     //------------------- Retrofit2 -------------------
     implementation "com.squareup.retrofit2:retrofit:$retrofit"

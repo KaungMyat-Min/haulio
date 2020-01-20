@@ -5,7 +5,7 @@ import androidx.lifecycle.Transformations;
 import com.kaungmyatmin.haulio.common.baseclass.BaseViewModel;
 import com.kaungmyatmin.haulio.model.DataWrapper;
 import com.kaungmyatmin.haulio.model.Job;
-import com.kaungmyatmin.haulio.usecase.FetchJobsUseCase;
+import com.kaungmyatmin.haulio.ui.jobs.usecase.FetchJobsUseCase;
 
 import java.util.List;
 

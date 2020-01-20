@@ -1,28 +1,28 @@
 package com.kaungmyatmin.haulio;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-
-
+import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
-
 import com.kaungmyatmin.haulio.common.baseclass.BaseActivity;
 import com.kaungmyatmin.haulio.helper.AuthHelper;
 import com.kaungmyatmin.haulio.helper.MyLog;
 import com.kaungmyatmin.haulio.helper.NavigationHelper;
-
 import javax.inject.Inject;
 
 public class MainActivity extends BaseActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
+
+    //--------- view variable start ---------
+    private AppCompatImageButton ibBack, ibLogout;
+    private Toolbar toolbar;
+    private ActionBar actionBar;
+    //-------- view variable end ---------
 
     @Inject
     AuthHelper authHelper;
@@ -35,55 +35,46 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.main_activity);
         getActivityComponent().inject(this);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        bindViews();
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        actionBar = getSupportActionBar();
+        setListeners();
+    }
 
-        ActionBar actionBar = getSupportActionBar();
+    @Override
+    protected void bindViews() {
+        toolbar = findViewById(R.id.toolbar);
+        ibLogout = toolbar.findViewById(R.id.action_log_out);
+        ibBack = toolbar.findViewById(R.id.action_back);
+    }
+
+    @Override
+    protected void setListeners() {
+
+        ibLogout.setOnClickListener(view -> {
+            authHelper.logout(this);
+            navigationHelper.restartApplication();
+        });
+
+        ibBack.setOnClickListener(view -> {
+            onBackPressed();
+        });
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
             switch (destination.getId()) {
                 case R.id.dest_loginFragment:
                     actionBar.hide();
                     break;
+                case R.id.dest_jobsFragment:
+                    toolbar.findViewById(R.id.action_back).setVisibility(View.INVISIBLE);
+                    actionBar.show();
+                    break;
                 default:
+                    toolbar.findViewById(R.id.action_back).setVisibility(View.VISIBLE);
                     actionBar.show();
             }
         });
-
     }
 
-    @Override
-    protected void bindViews() {
-
-    }
-
-    @Override
-    protected void updateTheme() {
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_log_out:
-
-                authHelper.logout(this);
-                navigationHelper.restartApplication();
-
-                break;
-            case android.R.id.home:
-                onBackPressed();
-                break;
-        }
-
-        return true;
-    }
 }

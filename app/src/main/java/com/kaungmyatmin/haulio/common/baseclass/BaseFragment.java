@@ -20,7 +20,6 @@ public abstract class BaseFragment extends Fragment {
 
 
     protected abstract void bindViews(View view);
-    protected abstract void updateTheme();
     protected abstract void setListeners();
     protected abstract void setObservers();
 }

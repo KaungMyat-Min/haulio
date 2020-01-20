@@ -24,10 +24,8 @@ public class SplashFragment extends BaseFragment {
 
     @Inject
     SplashViewModel mViewModel;
-
     @Inject
     AuthHelper authHelper;
-
     @Inject
     NavigationHelper navigationHelper;
 
@@ -35,7 +33,9 @@ public class SplashFragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_splash, container, false);
+        View view =  inflater.inflate(R.layout.fragment_splash, container, false);
+        bindViews(view);
+        return view;
     }
 
     @Override
@@ -49,16 +49,15 @@ public class SplashFragment extends BaseFragment {
             navigationHelper.toLogin();
         }
 
+        setListeners();
+        setObservers();
+
     }
     @Override
     protected void bindViews(View view) {
 
     }
 
-    @Override
-    protected void updateTheme() {
-
-    }
 
     @Override
     protected void setListeners() {

@@ -1,4 +1,4 @@
-package com.kaungmyatmin.haulio.usecase;
+package com.kaungmyatmin.haulio.ui.jobs.usecase;
 
 import com.kaungmyatmin.haulio.common.baseclass.BaseObservableUseCase;
 import com.kaungmyatmin.haulio.errorhandler.ErrorType;

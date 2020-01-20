@@ -3,17 +3,13 @@ package com.kaungmyatmin.haulio.ui.transport;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -32,14 +28,11 @@ import com.kaungmyatmin.haulio.helper.MyLog;
 import com.kaungmyatmin.haulio.helper.PermissionHelper;
 import com.kaungmyatmin.haulio.model.Job;
 import com.kaungmyatmin.haulio.model.User;
-
 import javax.inject.Inject;
 
 public class TransportFragment extends BaseFragment implements OnMapReadyCallback {
 
     private static final String TAG = TransportFragment.class.getSimpleName();
-    private static final int CURRENT_POSITION_TAG = 1;
-    private static final int DESTINATION_TAG = 2;
 
     //-------- variables start ---------
 
@@ -47,7 +40,7 @@ public class TransportFragment extends BaseFragment implements OnMapReadyCallbac
     private User user;
     private FusedLocationProviderClient locationProviderClient;
 
-    //-------- variables start ---------
+    //-------- variables end ---------
 
 
     //-------- view variables start ---------
@@ -76,7 +69,7 @@ public class TransportFragment extends BaseFragment implements OnMapReadyCallbac
         }
         View view = inflater.inflate(R.layout.fragment_transport, container, false);
         bindViews(view);
-        updateTheme();
+
         locationProviderClient = LocationServices.getFusedLocationProviderClient(getContext());
 
         return view;
@@ -119,17 +112,13 @@ public class TransportFragment extends BaseFragment implements OnMapReadyCallbac
     }
 
     @Override
-    protected void updateTheme() {
-
-    }
-
-    @Override
     protected void setListeners() {
 
     }
 
     @Override
     protected void setObservers() {
+
         mViewModel.getCurrentLocation().observe(this, currentLocation -> {
             if (currentLocation != null) {
                 updateMarker(currentLocation);

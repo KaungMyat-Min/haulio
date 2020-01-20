@@ -53,7 +53,7 @@ public class LoginFragment extends BaseFragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         bindViews(view);
-        updateTheme();
+
         return view;
     }
 
@@ -68,11 +68,6 @@ public class LoginFragment extends BaseFragment {
     @Override
     protected void bindViews(View view) {
         signInButton = view.findViewById(R.id.sign_in_button);
-    }
-
-    @Override
-    protected void updateTheme() {
-
     }
 
     @Override

@@ -26,11 +26,11 @@ public class JobsFragment extends BaseFragment {
 
     private RecyclerView recyclerView;
     private ProgressBar progressBar;
+
     //------- views variables end-------
 
     @Inject
     JobsViewModel mViewModel;
-
     @Inject
     JobsAdapter jobsAdapter;
 
@@ -40,14 +40,13 @@ public class JobsFragment extends BaseFragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_jobs, container, false);
         bindViews(view);
-        updateTheme();
 
         return view;
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         getActivityComponent().inject(this);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -55,7 +54,6 @@ public class JobsFragment extends BaseFragment {
 
         mViewModel.fetchJobs();
         setObservers();
-
     }
 
     @Override
@@ -64,10 +62,6 @@ public class JobsFragment extends BaseFragment {
         progressBar  = view.findViewById(R.id.progress_bar);
     }
 
-    @Override
-    protected void updateTheme() {
-
-    }
 
     @Override
     protected void setListeners() {
@@ -76,7 +70,9 @@ public class JobsFragment extends BaseFragment {
 
     @Override
     protected void setObservers() {
+
         mViewModel.getJobsLiveData().observe(this, jobsDataWrapper -> {
+
             if (jobsDataWrapper.isLoading()) {
                progressBar.setVisibility(View.VISIBLE);
 

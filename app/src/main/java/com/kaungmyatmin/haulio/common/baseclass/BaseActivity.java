@@ -20,5 +20,5 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected abstract void bindViews();
-    protected abstract void updateTheme();
+    protected abstract void setListeners();
 }

@@ -5,10 +5,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.kaungmyatmin.haulio.R;
 import com.kaungmyatmin.haulio.common.baseclass.BaseViewHolder;
 import com.kaungmyatmin.haulio.helper.NavigationHelper;
@@ -50,12 +48,17 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.MyViewHolder> 
     public int getItemCount() {
         return jobs != null ? jobs.size() : 0;
     }
+
+
     //------------- getter and setter -----------
 
     public void setJobs(List<Job> jobs) {
+        //todo: don't use notifyDataSetChanged(), use some DiffUlti for performance improvement. current is for demo purpose only
         this.jobs = jobs;
         notifyDataSetChanged();
     }
+
+
 
     //------------- view holder -------------
 
@@ -76,10 +79,6 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.MyViewHolder> 
             btnAccept = view.findViewById(R.id.btn_accept);
         }
 
-        @Override
-        protected void updateTheme() {
-
-        }
 
         @Override
         protected void bindData(Job job) {
@@ -89,6 +88,7 @@ public class JobsAdapter extends RecyclerView.Adapter<JobsAdapter.MyViewHolder> 
             tvAddress.setText(job.getAddress());
 
             btnAccept.setOnClickListener(view -> {
+                //todo: callback to server about the taking job
                 navigationHelper.toTransport(job);
             });
 

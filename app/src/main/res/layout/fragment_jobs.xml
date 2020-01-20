@@ -8,6 +8,7 @@
     tools:context=".ui.jobs.JobsFragment">
 
     <TextView
+        android:background="@color/quantum_grey300"
         android:id="@+id/label_job_available"
         style="@style/text_big"
         android:layout_width="match_parent"

@@ -25,7 +25,9 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.kaungmyatmin.haulio.R;
 import com.kaungmyatmin.haulio.common.baseclass.BaseFragment;
+import com.kaungmyatmin.haulio.common.constant.Constant;
 import com.kaungmyatmin.haulio.helper.AuthHelper;
+import com.kaungmyatmin.haulio.helper.ImageHelper;
 import com.kaungmyatmin.haulio.helper.MyLog;
 import com.kaungmyatmin.haulio.helper.PermissionHelper;
 import com.kaungmyatmin.haulio.model.Job;
@@ -95,6 +97,7 @@ public class TransportFragment extends BaseFragment implements OnMapReadyCallbac
 
         tvUserName.setText(user.getName());
         tvJobNumber.setText(String.valueOf(job.getJobId()));
+        ImageHelper.loadImage(user.getProfilePic(),ivProfilePic);
     }
 
     @Override
@@ -152,7 +155,7 @@ public class TransportFragment extends BaseFragment implements OnMapReadyCallbac
 
         googleMap.addMarker(markerOptions);
         googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 2));
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, Constant.MAP_ZOOM_SIZE));
     }
 
     private void updateMarker(Job job){
@@ -165,6 +168,6 @@ public class TransportFragment extends BaseFragment implements OnMapReadyCallbac
 
         googleMap.addMarker(markerOptions);
         googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
-        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 2));
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, Constant.MAP_ZOOM_SIZE));
     }
 }

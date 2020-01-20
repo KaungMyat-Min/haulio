@@ -28,17 +28,28 @@ public class MainActivity extends BaseActivity {
     AuthHelper authHelper;
     @Inject
     NavigationHelper navigationHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
         getActivityComponent().inject(this);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
-
-
-
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        ActionBar actionBar = getSupportActionBar();
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+            switch (destination.getId()) {
+                case R.id.dest_loginFragment:
+                    actionBar.hide();
+                    break;
+                default:
+                    actionBar.show();
+            }
+        });
 
     }
 
@@ -55,17 +66,17 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main,menu);
+        inflater.inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.action_log_out:
 
                 authHelper.logout();
-                navigationHelper.toSplash();
+                navigationHelper.restartApplication();
 
                 break;
             case android.R.id.home:

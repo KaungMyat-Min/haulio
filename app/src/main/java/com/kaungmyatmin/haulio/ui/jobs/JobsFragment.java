@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.kaungmyatmin.haulio.R;
 import com.kaungmyatmin.haulio.common.baseclass.BaseFragment;
@@ -22,7 +23,9 @@ public class JobsFragment extends BaseFragment {
     private static final String TAG = JobsFragment.class.getSimpleName();
 
     //------- views variables start-------
+
     private RecyclerView recyclerView;
+    private ProgressBar progressBar;
     //------- views variables end-------
 
     @Inject
@@ -58,6 +61,7 @@ public class JobsFragment extends BaseFragment {
     @Override
     protected void bindViews(View view) {
         recyclerView = view.findViewById(R.id.rv_jobs);
+        progressBar  = view.findViewById(R.id.progress_bar);
     }
 
     @Override
@@ -74,10 +78,10 @@ public class JobsFragment extends BaseFragment {
     protected void setObservers() {
         mViewModel.getJobsLiveData().observe(this, jobsDataWrapper -> {
             if (jobsDataWrapper.isLoading()) {
-                //show loading
+               progressBar.setVisibility(View.VISIBLE);
 
             } else {
-                //hide loading
+                progressBar.setVisibility(View.GONE);
             }
 
             if (jobsDataWrapper.getErrorType() != null) {

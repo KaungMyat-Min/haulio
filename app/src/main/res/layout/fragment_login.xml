@@ -1,13 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.login.LoginFragment">
 
-    <com.google.android.gms.common.SignInButton
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/haulio_logo_red"
+        app:layout_constraintBottom_toTopOf="@id/container_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.817" />
+
+    <LinearLayout
+        android:id="@+id/container_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+    <ImageView
+        android:layout_width="40dp"
+        android:padding="10dp"
+        android:background="@drawable/solid_border"
+        android:layout_height="40dp"
+        android:src="@drawable/google_logo" />
+
+    <Button
         android:id="@+id/sign_in_button"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="40dp"
+        android:background="@color/google_blue"
+        android:paddingStart="12dp"
+        android:paddingTop="8dp"
+        android:textAllCaps="false"
+        android:paddingEnd="8dp"
+        android:paddingBottom="8dp"
+        android:text="@string/sign_up_with_google"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+      />
 
-</FrameLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

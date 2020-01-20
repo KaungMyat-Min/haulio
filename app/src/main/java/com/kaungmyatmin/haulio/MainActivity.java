@@ -75,7 +75,7 @@ public class MainActivity extends BaseActivity {
         switch (item.getItemId()) {
             case R.id.action_log_out:
 
-                authHelper.logout();
+                authHelper.logout(this);
                 navigationHelper.restartApplication();
 
                 break;

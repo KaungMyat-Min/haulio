@@ -16,9 +16,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.kaungmyatmin.haulio.R;
 import com.kaungmyatmin.haulio.common.baseclass.BaseFragment;
 import com.kaungmyatmin.haulio.helper.AuthHelper;
@@ -33,7 +33,8 @@ public class LoginFragment extends BaseFragment {
     private static final String TAG = LoginFragment.class.getSimpleName();
     private static final int RC_SIGN_IN = 1123;
 
-    private GoogleSignInClient mGoogleSignInClient;
+
+    private User user;
 
     private Button signInButton;
 
@@ -53,45 +54,20 @@ public class LoginFragment extends BaseFragment {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
         bindViews(view);
         updateTheme();
-        setListeners();
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
-                new OnBackPressedCallback(true) {
-                    @Override
-                    public void handleOnBackPressed() {
-                        //viewModel.refuseAuthentication();
-                        navigationHelper.toSplash();
-                    }
-                });
-
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+        setListeners();
         getActivityComponent().inject(this);
         setObservers();
-
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("592059006628-1gnlkov31ol5bah52n460ml5espm6gu1.apps.googleusercontent.com")
-                .requestEmail()
-                .build();
-
-        mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
-
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getActivity().getApplicationContext());
-
     }
 
     @Override
     protected void bindViews(View view) {
-       signInButton = view.findViewById(R.id.sign_in_button);
-
+        signInButton = view.findViewById(R.id.sign_in_button);
     }
 
     @Override
@@ -101,15 +77,38 @@ public class LoginFragment extends BaseFragment {
 
     @Override
     protected void setListeners() {
-        signInButton.setOnClickListener(view->{
-            Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-            startActivityForResult(signInIntent, RC_SIGN_IN);
+        signInButton.setOnClickListener(view -> {
+            startSignInProcess();
         });
+
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(),
+                new OnBackPressedCallback(true) {
+                    @Override
+                    public void handleOnBackPressed() {
+                        mViewModel.refuseAuthentication();
+                    }
+                });
     }
 
     @Override
     protected void setObservers() {
-
+        mViewModel.getAuthenticationState().observe(getViewLifecycleOwner(), authenticationState -> {
+            switch (authenticationState) {
+                case AUTHENTICATED:
+                    authHelper.save(user);
+                    navigationHelper.toSplash();
+                    break;
+                case UNAUTHENTICATED:
+                    navigationHelper.toSplash();
+                    break;
+                case INVALID_AUTHENTICATION:
+                    Snackbar.make(getView(),
+                            R.string.invalid_credentials,
+                            Snackbar.LENGTH_SHORT
+                    ).show();
+                    break;
+            }
+        });
     }
 
     @Override
@@ -125,25 +124,27 @@ public class LoginFragment extends BaseFragment {
         }
     }
 
+    private void startSignInProcess() {
+        Intent signInIntent = authHelper.getGoogleSignInClient(getActivity()).getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            User user = new User();
+            user = new User();
             user.setName(account.getDisplayName());
             user.setProfilePic(account.getPhotoUrl().toString());
             user.setId(account.getEmail());
-            authHelper.attempt(user);
-            navigationHelper.toSplash();
+            mViewModel.authenticate(user);
 
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            MyLog.w(TAG, "signInResult:failed code=" + e.getStatusCode());
+            mViewModel.authenticateFail();
 
         }
     }
-
-
 
 
 }

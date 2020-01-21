@@ -28,8 +28,9 @@ public class NavigationHelper {
     }
 
     public void toLogin() {
-        getNavController()
-                .navigate(R.id.dest_loginFragment);
+        NavController navController = getNavController();
+        navController.popBackStack(R.id.dest_splashFragment, true);
+        navController.navigate(R.id.dest_loginFragment);
     }
 
     public void toJobs() {
@@ -53,10 +54,11 @@ public class NavigationHelper {
         activity.startActivity(i);
         activity.finishAffinity();
 
-
-
     }
 
+    public void exitApplication(){
+        activity.finishAndRemoveTask();
+    }
     private NavController getNavController() {
         return Navigation.findNavController(activity, R.id.nav_host_fragment);
     }

@@ -94,7 +94,7 @@ public class LoginFragment extends BaseFragment {
                     navigationHelper.toSplash();
                     break;
                 case UNAUTHENTICATED:
-                    navigationHelper.toSplash();
+                    navigationHelper.exitApplication();
                     break;
                 case INVALID_AUTHENTICATION:
                     Snackbar.make(getView(),
